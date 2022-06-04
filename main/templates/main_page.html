@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Market_Python</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<h1>Hello !!</h1>
+<header id="header">
+    <div class="block">
+        <a href="https://mail.ru/"><img src="{% static 'img/logotipy-plashka.jpg' %}" alt="" class ="header__logo"</a>
+        <a href="https://html5book.ru/">Hello</a>
+    </div>
+    <div class="block">World</div>
+    <div class="block">!!!!!</div>
+</header>
+<nav class="nav">
+    <ul class="nav_ul">
+        {% for cat in categories %}
+        <li><a href="{% url 'main:category_sort' cat.id %}">{{ cat.name }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<main class ="main">
+{% block content %}
+    {% for prod in products %}
+    <div class="'item_img">
+        <img src="{{prod.image.url}}" alt="" class="img">
+        <p><o>Название: </o>{{ prod.title }}</p>
+        <p><o>Описание: </o>{{ prod.descriptions }}</p>
+        <p>Цена: {{ prod.price}} рублев</p>
+
+    </div>
+    {% endfor %}
+{% endblock %}
+</main>
+</body>
+</html>
